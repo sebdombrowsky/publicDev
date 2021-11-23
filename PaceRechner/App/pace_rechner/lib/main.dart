@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/pages/pace_rechner_page.dart';
-import 'package:pace_rechner/root.dart';
 
 void main() {
   runApp(const MyApp());

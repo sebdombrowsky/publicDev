@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_text_field.dart';
 
@@ -10,13 +11,10 @@ class PaceRechnerPage extends StatefulWidget {
 }
 
 class _PaceRechnerPageState extends State<PaceRechnerPage> {
-  String distanz = "";
-  String zeit = "";
-  String pace = "";
+  StringConverter converter = StringConverter();
   TextEditingController distanzController = TextEditingController();
   TextEditingController zeitController = TextEditingController();
   TextEditingController paceController = TextEditingController();
-  FocusNode focusNode = FocusNode();
 
   bool showDistanzen = false;
   bool showZeiten = false;
@@ -50,68 +48,16 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                     controller: distanzController,
                     onTap: () => {},
                   ),
-                  /* if (showDistanzen)
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            CustomDistanzButton(
-                                text: "1 Km", controller: distanzController),
-                            CustomDistanzButton(
-                                text: "5 Km", controller: distanzController),
-                            CustomDistanzButton(
-                                text: "10 Km", controller: distanzController),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            CustomDistanzButton(
-                                text: "15 Km", controller: distanzController),
-                            CustomDistanzButton(
-                                text: "Halbmarathon",
-                                controller: distanzController),
-                            CustomDistanzButton(
-                                text: "Marathon",
-                                controller: distanzController),
-                          ],
-                        )
-                      ],
-                    ), */
                   CustomTextField(
                     icon: Icon(
                       Icons.timer,
                       color: Colors.red[200],
                     ),
-                    hintText: "hh:mm",
+                    hintText: "Zeit in Minuten",
                     textInputType: TextInputType.number,
                     controller: zeitController,
                     onTap: () => {},
                   ),
-                  /* if (showZeiten)
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            CustomZeitButton(
-                                text: "1 Minute", controller: zeitController),
-                            CustomZeitButton(
-                                text: "5 Minuten", controller: zeitController),
-                            CustomZeitButton(
-                                text: "30 Minuten", controller: zeitController),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            CustomZeitButton(
-                                text: "1 Stunde", controller: zeitController),
-                            CustomZeitButton(
-                                text: "2 Stunden", controller: zeitController),
-                            CustomZeitButton(
-                                text: "4 Stunden", controller: zeitController),
-                          ],
-                        )
-                      ],
-                    ), */
                   CustomTextField(
                     icon: Icon(
                       Icons.fast_forward_rounded,
@@ -178,34 +124,8 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
   }
 
   void PaceBerechnen(String _distanz, String _zeit) {
-    _distanz = _distanz.replaceAll(',', '.');
-    double? distanzInKm = double.tryParse(_distanz.split(' ')[0]);
-
-    _zeit = _zeit.replaceAll(',', '.');
-    _zeit = _zeit.replaceAll('.', ':');
-    _zeit = _zeit.split(' ')[0];
-
-    double? zeitInMinuten = null;
-
-    if (_zeit.split(':').length > 1) {
-      double? stundenInMinuten = double.tryParse(_zeit.split(':')[0]);
-      double? minutenInMinuten = double.tryParse(_zeit.split(':')[1]);
-
-      if (stundenInMinuten != null && minutenInMinuten != null) {
-        var stunden = double.parse(_zeit.split(':')[0]) * 60;
-        var minuten = double.parse(_zeit.split(':')[1]);
-        zeitInMinuten = stunden + minuten;
-      }
-    }
-    else
-    {
-      double? minutenInStunden = double.tryParse(_zeit.split(':')[0]);
-
-      if (minutenInStunden != null) {
-        var stunden = double.parse(_zeit.split(':')[0]) / 60;
-        zeitInMinuten = stunden;
-      }
-    }
+    double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
+    double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
 
     String paceInKmProMin = "";
 
@@ -221,41 +141,14 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
     }
 
     setState(() {
-      paceController.text = "";
       paceController.text = paceInKmProMin.replaceAll('.', ':') + " min/km";
     });
   }
 
   void DistanzBerechnen(String _zeit, String _pace) {
-    _pace = _pace.replaceAll(',', '.');
-    _pace = _pace.replaceAll(':', '.');
+    double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
+    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
 
-    _zeit = _zeit.replaceAll(',', '.');
-    _zeit = _zeit.replaceAll('.', ':');
-    _zeit = _zeit.split(' ')[0];
-
-    double? zeitInMinuten = null;
-    if (_zeit.split(':').length > 1) {
-      double? stundenInMinuten = double.tryParse(_zeit.split(':')[0]);
-      double? minutenInMinuten = double.tryParse(_zeit.split(':')[1]);
-
-      if (stundenInMinuten != null && minutenInMinuten != null) {
-        var stunden = double.parse(_zeit.split(':')[0]) * 60;
-        var minuten = double.parse(_zeit.split(':')[1]);
-        zeitInMinuten = stunden + minuten;
-      }
-    }
-    else
-    {
-      double? minutenInStunden = double.tryParse(_zeit.split(':')[0]);
-
-      if (minutenInStunden != null) {
-        var stunden = double.parse(_zeit.split(':')[0]) / 60;
-        zeitInMinuten = stunden;
-      }
-    }
-
-    double? timePace = double.tryParse(_pace.split(' ')[0]);
     String distanzInKm = "";
 
     if (zeitInMinuten != null && timePace != null) {
@@ -272,17 +165,14 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
     }
 
     setState(() {
-      distanzController.text = "";
       distanzController.text = distanzInKm + " km";
     });
   }
 
   void ZeitBerechnen(String _distanz, String _pace) {
-    _distanz = _distanz.replaceAll(',', '.');
-    _pace = _pace.replaceAll(',', '.');
-    _pace = _pace.replaceAll(',', ':');
-    double? distanzInKm = double.tryParse(_distanz.split(' ')[0]);
-    double? timePace = double.tryParse(_pace.split(' ')[0]);
+    double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
+    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
+
     String zeitInMinuten = "";
 
     if (distanzInKm != null && timePace != null) {
@@ -298,7 +188,6 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
       zeitInMinuten = (distanzInKm * decimalPaceDouble).toStringAsFixed(0);
     }
     setState(() {
-      zeitController.text = "";
       zeitController.text = zeitInMinuten + " min";
     });
   }
