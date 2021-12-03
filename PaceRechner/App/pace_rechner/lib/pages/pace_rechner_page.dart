@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:pace_rechner/models/rechner.dart';
 import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_text_field.dart';
@@ -12,6 +14,7 @@ class PaceRechnerPage extends StatefulWidget {
 
 class _PaceRechnerPageState extends State<PaceRechnerPage> {
   StringConverter converter = StringConverter();
+  Rechner rechner = Rechner();
   TextEditingController distanzController = TextEditingController();
   TextEditingController zeitController = TextEditingController();
   TextEditingController paceController = TextEditingController();
@@ -124,71 +127,20 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
   }
 
   void PaceBerechnen(String _distanz, String _zeit) {
-    double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
-    double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
-
-    String paceInKmProMin = "";
-
-    if (distanzInKm != null && zeitInMinuten != null) {
-      var decimalPace = zeitInMinuten / distanzInKm;
-      var ganzeZahlString = decimalPace.toString().split('.')[0];
-      var nachKommaStellenString = "0." + decimalPace.toString().split('.')[1];
-      var echtePaceNachKommaStelle =
-          "0." + (double.parse(nachKommaStellenString) * 60).toStringAsFixed(0);
-      double echtePace = double.parse(ganzeZahlString) +
-          double.parse(echtePaceNachKommaStelle);
-      paceInKmProMin = echtePace.toStringAsFixed(2);
-    }
-
     setState(() {
-      paceController.text = paceInKmProMin.replaceAll('.', ':') + " min/km";
+      paceController.text = rechner.PaceBerechnen(_distanz, _zeit);
     });
   }
 
   void DistanzBerechnen(String _zeit, String _pace) {
-    double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
-    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
-
-    String distanzInKm = "";
-
-    if (zeitInMinuten != null && timePace != null) {
-      var decimalPaceNachkommastelleString = timePace.toString().split('.')[1];
-      if (decimalPaceNachkommastelleString.length == 1) {
-        decimalPaceNachkommastelleString =
-            decimalPaceNachkommastelleString + "0";
-      }
-      var decimalPaceNachkommastelle =
-          double.parse(decimalPaceNachkommastelleString) / 60;
-      var decimalPaceDouble = double.parse(timePace.toStringAsFixed(0)) +
-          decimalPaceNachkommastelle;
-      distanzInKm = (zeitInMinuten / decimalPaceDouble).toStringAsFixed(2);
-    }
-
     setState(() {
-      distanzController.text = distanzInKm + " km";
+      distanzController.text = rechner.DistanzBerechnen(_zeit, _pace);
     });
   }
 
   void ZeitBerechnen(String _distanz, String _pace) {
-    double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
-    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
-
-    String zeitInMinuten = "";
-
-    if (distanzInKm != null && timePace != null) {
-      var decimalPaceNachkommastelleString = timePace.toString().split('.')[1];
-      if (decimalPaceNachkommastelleString.length == 1) {
-        decimalPaceNachkommastelleString =
-            decimalPaceNachkommastelleString + "0";
-      }
-      var decimalPaceNachkommastelle =
-          double.parse(decimalPaceNachkommastelleString) / 60;
-      var decimalPaceDouble = double.parse(timePace.toStringAsFixed(0)) +
-          decimalPaceNachkommastelle;
-      zeitInMinuten = (distanzInKm * decimalPaceDouble).toStringAsFixed(0);
-    }
     setState(() {
-      zeitController.text = zeitInMinuten + " min";
+      zeitController.text = rechner.ZeitBerechnen(_distanz, _pace);
     });
   }
 }
