@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CustomTimePicker extends StatefulWidget {
   final TextEditingController controller;
@@ -17,7 +18,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
   @override
   Widget build(BuildContext context) {
-    anzeige = widget.mode == CupertinoTimerPickerMode.hm ? "hh:mm" : "mm:ss";
+    anzeige = widget.mode == CupertinoTimerPickerMode.hm ? "01:59" : "05:40";
     return GestureDetector(
       onTap: () {
         showTimePicker(
@@ -48,13 +49,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
       },
       child: Text(
         widget.controller.text == "" ? anzeige : widget.controller.text,
-        /*widget.mode == CupertinoTimerPickerMode.hm
-            ? '${timer.inHours}:'
-                '${(timer.inMinutes % 60).toString().padLeft(2, '0')}'
-            : '${timer.inMinutes}:' //(timer.inMinutes % 60).toString().padLeft(2, '0')
-                '${(timer.inSeconds % 60).toString().padLeft(2, '0')}',*/
-        style: const TextStyle(
-            color: CupertinoColors.activeOrange,
+        style: TextStyle(
+            color: widget.mode == CupertinoTimerPickerMode.hm ? CupertinoColors.activeOrange : CupertinoColors.activeBlue,
             fontSize: 24,
             fontWeight: FontWeight.bold),
       ),

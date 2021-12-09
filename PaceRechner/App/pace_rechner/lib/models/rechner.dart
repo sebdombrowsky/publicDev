@@ -7,12 +7,16 @@ class Rechner {
     double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
     double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
 
-    String paceInKmProMin = "";
-
+    String paceInKmProMin = "05:40";
     if (distanzInKm != null && zeitInMinuten != null) {
+      var nachKommaStelle = (((zeitInMinuten / distanzInKm) * 60) % 60)
+          .toStringAsFixed(1)
+          .split('.')[0];
       paceInKmProMin = (zeitInMinuten / distanzInKm).toString().split('.')[0] +
           ":" +
-          (((zeitInMinuten / distanzInKm) * 60) % 60).toStringAsFixed(0);
+          (nachKommaStelle.length == 1
+              ? "0" + nachKommaStelle
+              : nachKommaStelle);
     }
     return paceInKmProMin;
   }
@@ -24,11 +28,14 @@ class Rechner {
     String distanzInKm = "";
 
     if (zeitInMinuten != null && paceInSekunden != null) {
-      distanzInKm =
-          ((zeitInMinuten * 60) / paceInSekunden).toString().split('.')[0] +
-              "." +
-              ((((zeitInMinuten * 60) / paceInSekunden) * 60) % 60)
-                  .toStringAsFixed(0);
+      distanzInKm = ((zeitInMinuten * 60) / paceInSekunden)
+              .round()
+              .toString()
+              .split('.')[0] +
+          "." +
+          ((((zeitInMinuten * 60) / paceInSekunden).round() * 60) % 60)
+              .toStringAsFixed(1)
+              .split('.')[0];
     }
     return distanzInKm;
   }
@@ -40,10 +47,16 @@ class Rechner {
     String zeitInStunden = "";
 
     if (distanzInKm != null && paceInSekunden != null) {
-      zeitInStunden =
-          (((distanzInKm * paceInSekunden) / 60) / 60).toString().split('.')[0] +
-              ":" +
-              (((distanzInKm * paceInSekunden) / 60) % 60).toString().split('.')[0];
+      var nachKommaStelle = (((distanzInKm * paceInSekunden) / 60) % 60)
+          .toStringAsFixed(1)
+          .split('.')[0];
+      zeitInStunden = (((distanzInKm * paceInSekunden) / 60) / 60)
+              .toString()
+              .split('.')[0] +
+          ":" +
+          (nachKommaStelle.length == 1
+              ? "0" + nachKommaStelle
+              : nachKommaStelle);
     }
     return zeitInStunden;
   }

@@ -5,6 +5,7 @@ import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_distance_picker.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_time_picker.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class PaceRechnerPage extends StatefulWidget {
   const PaceRechnerPage({Key? key}) : super(key: key);
@@ -22,120 +23,124 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
 
   @override
   Widget build(BuildContext context) {
+    //default Werte
+    distanzController.text = distanzController.text == "" ? "21.1" : distanzController.text;
+    zeitController.text = zeitController.text == "" ?"01:59" : zeitController.text;
+    paceController.text = paceController.text == "" ?"05:40" : paceController.text;
+
     return Scaffold(
       backgroundColor: CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
         title: Text("Pace Rechner"),
         centerTitle: true,
-        backgroundColor: CupertinoColors.activeOrange,
+        backgroundColor: CupertinoColors.systemIndigo,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 80),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Material(
-                    borderOnForeground: true,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          border: Border.all(color: Colors.grey[500]!),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: CustomDistancePicker(
-                        controller: distanzController,
-                      )),
-                    ),
-                  ),
-                  Material(
-                    borderOnForeground: true,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          border: Border.all(color: Colors.grey[500]!),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: CustomTimePicker(
-                        controller: zeitController,
-                        mode: CupertinoTimerPickerMode.hm,
-                      )),
-                    ),
-                  ),
-                  Material(
-                    borderOnForeground: true,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          border: Border.all(color: Colors.grey[500]!),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: CustomTimePicker(
-                        controller: paceController,
-                        mode: CupertinoTimerPickerMode.ms,
-                      )),
-                    ),
+                  Row(
+                    children: [
+                      CustomButton(
+                        onPressed: () => {
+                          DistanzBerechnen(
+                              zeitController.text, paceController.text)
+                        },
+                        text: "Distanz (km)",
+                        buttonColor: CupertinoColors.activeGreen,
+                        icon: Icons.sports_score,
+                        height: 60,
+                        width: 120,
+                      ),
+                      Material(
+                        borderOnForeground: true,
+                        elevation: 2,
+                        borderRadius: BorderRadius.circular(6),
+                        child: Container(
+                          width: 100,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              border: Border.all(color: Colors.grey[500]!),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Center(
+                              child: CustomDistancePicker(
+                            controller: distanzController,
+                          )),
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Column(
-                        children: [
-                          CustomButton(
-                            onPressed: () => {
-                              DistanzBerechnen(
-                                  zeitController.text, paceController.text)
-                            },
-                            text: "Distanz",
-                            buttonColor: Colors.green[400]!,
-                            icon: Icons.sports_score,
-                            height: 80,
-                            width: 80,
-                          ),
-                          CustomButton(
-                            onPressed: () => {
-                              ZeitBerechnen(
-                                  distanzController.text, paceController.text)
-                            },
-                            text: "Zeit",
-                            buttonColor: Colors.red[200]!,
-                            icon: Icons.timer,
-                            height: 80,
-                            width: 80,
-                          ),
-                        ],
+                      CustomButton(
+                        onPressed: () => {
+                          ZeitBerechnen(
+                              distanzController.text, paceController.text)
+                        },
+                        text: "Zeit (hh:mm)",
+                        buttonColor: CupertinoColors.activeOrange,
+                        icon: Icons.timer,
+                        height: 60,
+                        width: 120,
                       ),
-                      Column(
-                        children: [
-                          CustomButton(
-                            onPressed: () => {
-                              PaceBerechnen(
-                                  distanzController.text, zeitController.text)
-                            },
-                            text: "Pace",
-                            buttonColor: Colors.blue[200]!,
-                            icon: Icons.fast_forward_rounded,
-                            height: 180,
-                            width: 180,
-                          ),
-                        ],
-                      )
+                      Material(
+                        borderOnForeground: true,
+                        elevation: 2,
+                        borderRadius: BorderRadius.circular(6),
+                        child: Container(
+                          width: 100,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              border: Border.all(color: Colors.grey[500]!),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Center(
+                              child: CustomTimePicker(
+                            controller: zeitController,
+                            mode: CupertinoTimerPickerMode.hm,
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CustomButton(
+                        onPressed: () => {
+                          PaceBerechnen(
+                              distanzController.text, zeitController.text)
+                        },
+                        text: "Pace (min/km)",
+                        buttonColor: CupertinoColors.activeBlue,
+                        icon: Icons.fast_forward_rounded,
+                        height: 60,
+                        width: 120,
+                      ),
+                      Material(
+                        borderOnForeground: true,
+                        elevation: 2,
+                        borderRadius: BorderRadius.circular(6),
+                        child: Container(
+                          width: 100,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              border: Border.all(color: Colors.grey[500]!),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Center(
+                              child: CustomTimePicker(
+                            controller: paceController,
+                            mode: CupertinoTimerPickerMode.ms,
+                          )),
+                        ),
+                      ),
                     ],
                   ),
                 ],

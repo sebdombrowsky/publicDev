@@ -17,19 +17,19 @@ class CustomButton extends StatelessWidget {
         onTap: () => onPressed(),
         child: Material(
           elevation: 10,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(6),
           child: Container(
             height: height,
             width: width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(6),
               color: buttonColor
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(icon),
-                Text(text, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal,),),
+                Text(text, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,),),
               ],
             ),
           ),
