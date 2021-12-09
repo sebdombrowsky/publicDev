@@ -10,60 +10,41 @@ class Rechner {
     String paceInKmProMin = "";
 
     if (distanzInKm != null && zeitInMinuten != null) {
-      var decimalPace = zeitInMinuten / distanzInKm;
-      var ganzeZahlString = decimalPace.toString().split('.')[0];
-      var nachKommaStellenString = "0." + decimalPace.toString().split('.')[1];
-      var echtePaceNachKommaStelle =
-          "0." + (double.parse(nachKommaStellenString) * 60).toStringAsFixed(0);
-      double echtePace = double.parse(ganzeZahlString) +
-          double.parse(echtePaceNachKommaStelle);
-      paceInKmProMin = echtePace.toStringAsFixed(2);
+      paceInKmProMin = (zeitInMinuten / distanzInKm).toString().split('.')[0] +
+          ":" +
+          (((zeitInMinuten / distanzInKm) * 60) % 60).toStringAsFixed(0);
     }
-
-    return paceInKmProMin.replaceAll('.', ':') + " min/km";
+    return paceInKmProMin;
   }
 
   String DistanzBerechnen(String _zeit, String _pace) {
     double? zeitInMinuten = converter.ConvertStringToZeitInMinuten(_zeit);
-    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
+    double? paceInSekunden = converter.ConvertStringToPaceInMinutenProKm(_pace);
 
     String distanzInKm = "";
 
-    if (zeitInMinuten != null && timePace != null) {
-      var decimalPaceNachkommastelleString = timePace.toString().split('.')[1];
-      if (decimalPaceNachkommastelleString.length == 1) {
-        decimalPaceNachkommastelleString =
-            decimalPaceNachkommastelleString + "0";
-      }
-      var decimalPaceNachkommastelle =
-          double.parse(decimalPaceNachkommastelleString) / 60;
-      var decimalPaceDouble = double.parse(timePace.toStringAsFixed(0)) +
-          decimalPaceNachkommastelle;
-      distanzInKm = (zeitInMinuten / decimalPaceDouble).toStringAsFixed(2);
+    if (zeitInMinuten != null && paceInSekunden != null) {
+      distanzInKm =
+          ((zeitInMinuten * 60) / paceInSekunden).toString().split('.')[0] +
+              "." +
+              ((((zeitInMinuten * 60) / paceInSekunden) * 60) % 60)
+                  .toStringAsFixed(0);
     }
-
-    return distanzInKm + " km";
+    return distanzInKm;
   }
 
   String ZeitBerechnen(String _distanz, String _pace) {
     double? distanzInKm = converter.ConvertStringToDistanzInKm(_distanz);
-    double? timePace = converter.ConvertStringToPaceInMinutenProKm(_pace);
+    double? paceInSekunden = converter.ConvertStringToPaceInMinutenProKm(_pace);
 
-    String zeitInMinuten = "";
+    String zeitInStunden = "";
 
-    if (distanzInKm != null && timePace != null) {
-      var decimalPaceNachkommastelleString = timePace.toString().split('.')[1];
-      if (decimalPaceNachkommastelleString.length == 1) {
-        decimalPaceNachkommastelleString =
-            decimalPaceNachkommastelleString + "0";
-      }
-      var decimalPaceNachkommastelle =
-          double.parse(decimalPaceNachkommastelleString) / 60;
-      var decimalPaceDouble = double.parse(timePace.toStringAsFixed(0)) +
-          decimalPaceNachkommastelle;
-      zeitInMinuten = (distanzInKm * decimalPaceDouble).toStringAsFixed(0);
+    if (distanzInKm != null && paceInSekunden != null) {
+      zeitInStunden =
+          (((distanzInKm * paceInSekunden) / 60) / 60).toString().split('.')[0] +
+              ":" +
+              (((distanzInKm * paceInSekunden) / 60) % 60).toString().split('.')[0];
     }
-
-    return zeitInMinuten + " min";
+    return zeitInStunden;
   }
 }

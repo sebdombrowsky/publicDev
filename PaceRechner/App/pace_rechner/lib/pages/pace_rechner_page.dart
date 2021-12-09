@@ -1,9 +1,10 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/models/rechner.dart';
 import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
-import 'package:pace_rechner/pages/pace_rechner_widgets/custom_text_field.dart';
+import 'package:pace_rechner/pages/pace_rechner_widgets/custom_distance_picker.dart';
+import 'package:pace_rechner/pages/pace_rechner_widgets/custom_time_picker.dart';
 
 class PaceRechnerPage extends StatefulWidget {
   const PaceRechnerPage({Key? key}) : super(key: key);
@@ -19,17 +20,14 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
   TextEditingController zeitController = TextEditingController();
   TextEditingController paceController = TextEditingController();
 
-  bool showDistanzen = false;
-  bool showZeiten = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[50],
+      backgroundColor: CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
         title: Text("Pace Rechner"),
         centerTitle: true,
-        backgroundColor: Colors.orange[400],
+        backgroundColor: CupertinoColors.activeOrange,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -41,35 +39,58 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomTextField(
-                    icon: Icon(
-                      Icons.sports_score,
-                      color: Colors.green[400],
+                  Material(
+                    borderOnForeground: true,
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(6),
+                    child: Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          border: Border.all(color: Colors.grey[500]!),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                          child: CustomDistancePicker(
+                        controller: distanzController,
+                      )),
                     ),
-                    hintText: "Distanz in km",
-                    textInputType: TextInputType.number,
-                    controller: distanzController,
-                    onTap: () => {},
                   ),
-                  CustomTextField(
-                    icon: Icon(
-                      Icons.timer,
-                      color: Colors.red[200],
+                  Material(
+                    borderOnForeground: true,
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(6),
+                    child: Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          border: Border.all(color: Colors.grey[500]!),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                          child: CustomTimePicker(
+                        controller: zeitController,
+                        mode: CupertinoTimerPickerMode.hm,
+                      )),
                     ),
-                    hintText: "Zeit in Minuten",
-                    textInputType: TextInputType.number,
-                    controller: zeitController,
-                    onTap: () => {},
                   ),
-                  CustomTextField(
-                    icon: Icon(
-                      Icons.fast_forward_rounded,
-                      color: Colors.blue[200],
+                  Material(
+                    borderOnForeground: true,
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(6),
+                    child: Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          border: Border.all(color: Colors.grey[500]!),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                          child: CustomTimePicker(
+                        controller: paceController,
+                        mode: CupertinoTimerPickerMode.ms,
+                      )),
                     ),
-                    hintText: "mm:ss",
-                    textInputType: TextInputType.number,
-                    controller: paceController,
-                    onTap: () => {showDistanzen = false, showZeiten = false},
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

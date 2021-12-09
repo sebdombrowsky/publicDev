@@ -12,20 +12,23 @@ class StringConverter {
   }
 
   double? ConvertStringToZeitInMinuten(String _zeit) {
-    _zeit = _zeit.replaceAll(',', '.');
-    _zeit = _zeit.replaceAll('.', ':');
-    _zeit = _zeit.split(' ')[0];
-    double? zeitInMinuten = double.tryParse(_zeit.split(' ')[0]);
-    return zeitInMinuten;
+    double? stunden = double.tryParse(_zeit.split(':')[0]);
+    double? minuten = double.tryParse(_zeit.split(':')[1]);
+    if (stunden != null && minuten != null) {
+      double zeitInMinuten = (stunden * 60) + minuten;
+      return zeitInMinuten;
+    }
+    return null;
   }
 
   double? ConvertStringToPaceInMinutenProKm(String _pace) {
-    if (_pace.isEmpty) {
-      return null;
+    double? minuten = double.tryParse(_pace.split(':')[0]);
+    double? sekunden = double.tryParse(_pace.split(':')[1]);
+
+    if (minuten != null && sekunden != null) {
+      double zeitInSekunden = (minuten * 60) + sekunden;
+      return zeitInSekunden;
     }
-    _pace = _pace.replaceAll(',', '.');
-    _pace = _pace.replaceAll(':', '.');
-    double? timePace = double.tryParse(_pace.split(' ')[0]);
-    return timePace;
+    return null;
   }
 }
