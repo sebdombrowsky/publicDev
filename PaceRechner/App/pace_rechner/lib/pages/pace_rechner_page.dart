@@ -6,6 +6,8 @@ import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_distance_picker.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_time_picker.dart';
 
+import 'pace_rechner_widgets/pop_up_dialog.dart';
+
 class PaceRechnerPage extends StatefulWidget {
   const PaceRechnerPage({Key? key}) : super(key: key);
 
@@ -33,6 +35,12 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
         title: Text("Pace Rechner"),
         centerTitle: true,
         backgroundColor: CupertinoColors.systemIndigo,
+        leading: IconButton (
+                 icon: Icon(Icons.info), 
+                 onPressed: () { 
+                       showDialog(context: context, builder: (BuildContext context) => PopUpDialog());
+                 },
+            ),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -54,16 +62,16 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                         text: "Distanz (km)",
                         buttonColor: CupertinoColors.activeGreen,
                         icon: Icons.sports_score,
-                        height: 60,
-                        width: 120,
+                        height: 70,
+                        width: 140,
                       ),
                       Material(
                         borderOnForeground: true,
                         elevation: 2,
                         borderRadius: BorderRadius.circular(6),
                         child: Container(
-                          width: 100,
-                          height: 60,
+                          width: 110,
+                          height: 70,
                           decoration: BoxDecoration(
                               color: Colors.grey[300],
                               border: Border.all(color: Colors.grey[500]!),
@@ -86,16 +94,16 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                         text: "Zeit (hh:mm)",
                         buttonColor: CupertinoColors.activeOrange,
                         icon: Icons.timer,
-                        height: 60,
-                        width: 120,
+                        height: 70,
+                        width: 140,
                       ),
                       Material(
                         borderOnForeground: true,
                         elevation: 2,
                         borderRadius: BorderRadius.circular(6),
                         child: Container(
-                          width: 100,
-                          height: 60,
+                          width: 110,
+                          height: 70,
                           decoration: BoxDecoration(
                               color: Colors.grey[300],
                               border: Border.all(color: Colors.grey[500]!),
@@ -119,16 +127,16 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                         text: "Pace (min/km)",
                         buttonColor: CupertinoColors.activeBlue,
                         icon: Icons.fast_forward_rounded,
-                        height: 60,
-                        width: 120,
+                        height: 70,
+                        width: 140,
                       ),
                       Material(
                         borderOnForeground: true,
                         elevation: 2,
                         borderRadius: BorderRadius.circular(6),
                         child: Container(
-                          width: 100,
-                          height: 60,
+                          width: 110,
+                          height: 70,
                           decoration: BoxDecoration(
                               color: Colors.grey[300],
                               border: Border.all(color: Colors.grey[500]!),

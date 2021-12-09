@@ -70,6 +70,14 @@ class _CustomDistancePickerState extends State<CustomDistancePicker> {
                 Center(child: Text("40 Km")),
                 Center(child: Text("41 Km")),
                 Center(child: Text("42 Km")),
+                Center(child: Text("43 Km")),
+                Center(child: Text("44 Km")),
+                Center(child: Text("45 Km")),
+                Center(child: Text("46 Km")),
+                Center(child: Text("47 Km")),
+                Center(child: Text("48 Km")),
+                Center(child: Text("49 Km")),
+                Center(child: Text("50 Km")),
               ],
               onSelectedItemChanged: (newDistance) {
                 setState(() {
@@ -84,7 +92,7 @@ class _CustomDistancePickerState extends State<CustomDistancePicker> {
         widget.controller.text == "" ? anzeige : widget.controller.text,
         style: const TextStyle(
             color: CupertinoColors.activeGreen,
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: FontWeight.bold),
       ),
     );
