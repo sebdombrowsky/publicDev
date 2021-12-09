@@ -5,7 +5,6 @@ import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_distance_picker.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_time_picker.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class PaceRechnerPage extends StatefulWidget {
   const PaceRechnerPage({Key? key}) : super(key: key);

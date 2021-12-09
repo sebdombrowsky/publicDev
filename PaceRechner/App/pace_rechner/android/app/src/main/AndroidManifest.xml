@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pace_rechner">
    <application
-        android:label="pace_rechner"
+        android:label="Pace"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
