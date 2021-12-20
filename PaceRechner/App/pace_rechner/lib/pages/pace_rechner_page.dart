@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/models/rechner.dart';
+import 'package:pace_rechner/models/sprueche.dart';
 import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_button.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/custom_distance_picker.dart';
@@ -18,9 +19,11 @@ class PaceRechnerPage extends StatefulWidget {
 class _PaceRechnerPageState extends State<PaceRechnerPage> {
   StringConverter converter = StringConverter();
   Rechner rechner = Rechner();
+  Sprueche sprueche = Sprueche();
   TextEditingController distanzController = TextEditingController();
   TextEditingController zeitController = TextEditingController();
   TextEditingController paceController = TextEditingController();
+  String spruch = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,9 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
     paceController.text = paceController.text == "" ?"05:40" : paceController.text;
 
     return Scaffold(
-      backgroundColor: CupertinoColors.darkBackgroundGray,
+      backgroundColor: Colors.white, // CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
-        title: Text("Pace Rechner"),
+        title: Text("PACE ME", style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
         backgroundColor: CupertinoColors.systemIndigo,
         leading: IconButton (
@@ -45,7 +48,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 80),
+          padding: const EdgeInsets.symmetric(vertical: 40),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -150,6 +153,10 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(spruch, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),),
+                  ),
                 ],
               ),
             ],
@@ -162,18 +169,21 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
   void PaceBerechnen(String _distanz, String _zeit) {
     setState(() {
       paceController.text = rechner.PaceBerechnen(_distanz, _zeit);
+      spruch = sprueche.GetSpruch(paceController.text);
     });
   }
 
   void DistanzBerechnen(String _zeit, String _pace) {
     setState(() {
       distanzController.text = rechner.DistanzBerechnen(_zeit, _pace);
+      spruch = sprueche.GetSpruch(paceController.text);
     });
   }
 
   void ZeitBerechnen(String _distanz, String _pace) {
     setState(() {
       zeitController.text = rechner.ZeitBerechnen(_distanz, _pace);
+      spruch = sprueche.GetSpruch(paceController.text);
     });
   }
 }

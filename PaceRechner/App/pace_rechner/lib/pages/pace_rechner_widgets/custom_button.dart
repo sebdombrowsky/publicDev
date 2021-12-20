@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
       child: InkWell(
         onTap: () => onPressed(),
         child: Material(
-          elevation: 10,
+          elevation: 2,
           borderRadius: BorderRadius.circular(6),
           child: Container(
             height: height,

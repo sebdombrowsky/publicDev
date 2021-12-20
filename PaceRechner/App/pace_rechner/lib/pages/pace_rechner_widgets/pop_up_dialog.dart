@@ -6,7 +6,7 @@ class PopUpDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Pace Rechner Infos'),
+      title: const Text('Pace Me Infos'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
