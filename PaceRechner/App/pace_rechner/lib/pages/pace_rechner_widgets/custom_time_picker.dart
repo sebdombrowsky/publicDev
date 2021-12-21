@@ -51,7 +51,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
         widget.controller.text == "" ? anzeige : widget.controller.text,
         style: TextStyle(
             color: widget.mode == CupertinoTimerPickerMode.hm ? CupertinoColors.activeOrange : CupertinoColors.activeBlue,
-            fontSize: 26,
+            fontSize: 30,
             fontWeight: FontWeight.bold),
       ),
     );

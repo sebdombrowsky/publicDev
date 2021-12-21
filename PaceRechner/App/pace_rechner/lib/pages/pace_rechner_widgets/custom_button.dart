@@ -28,8 +28,8 @@ class CustomButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon),
-                Text(text, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Text(text, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: "Roboto"),),
+                Icon(Icons.touch_app),
               ],
             ),
           ),

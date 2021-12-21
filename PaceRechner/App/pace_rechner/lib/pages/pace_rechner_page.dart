@@ -35,7 +35,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
     return Scaffold(
       backgroundColor: Colors.white, // CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
-        title: Text("PACE ME", style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text("Pace Me", style: TextStyle(fontFamily: "OoohBaby", fontSize: 35),),
         centerTitle: true,
         backgroundColor: CupertinoColors.systemIndigo,
         leading: IconButton (
@@ -62,7 +62,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                           DistanzBerechnen(
                               zeitController.text, paceController.text)
                         },
-                        text: "Distanz (km)",
+                        text: "Distance (km)",
                         buttonColor: CupertinoColors.activeGreen,
                         icon: Icons.sports_score,
                         height: 70,
@@ -94,7 +94,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                           ZeitBerechnen(
                               distanzController.text, paceController.text)
                         },
-                        text: "Zeit (hh:mm)",
+                        text: "Time (hh:mm)",
                         buttonColor: CupertinoColors.activeOrange,
                         icon: Icons.timer,
                         height: 70,
@@ -155,7 +155,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(spruch, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),),
+                    child: Text(spruch, style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.bold, fontSize: 35, fontFamily: "OoohBaby"),),
                   ),
                 ],
               ),

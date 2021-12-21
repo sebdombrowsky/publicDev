@@ -92,7 +92,7 @@ class _CustomDistancePickerState extends State<CustomDistancePicker> {
         widget.controller.text == "" ? anzeige : widget.controller.text,
         style: const TextStyle(
             color: CupertinoColors.activeGreen,
-            fontSize: 26,
+            fontSize: 30,
             fontWeight: FontWeight.bold),
       ),
     );
