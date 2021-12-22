@@ -1,4 +1,4 @@
-package com.example.pace_rechner
+package app.pace_rechner
 
 import io.flutter.embedding.android.FlutterActivity
 

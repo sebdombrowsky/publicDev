@@ -26,16 +26,9 @@ class Rechner {
     double? paceInSekunden = converter.ConvertStringToPaceInMinutenProKm(_pace);
 
     String distanzInKm = "";
-
     if (zeitInMinuten != null && paceInSekunden != null) {
-      distanzInKm = ((zeitInMinuten * 60) / paceInSekunden)
-              .round()
-              .toString()
-              .split('.')[0] +
-          "." +
-          ((((zeitInMinuten * 60) / paceInSekunden).round() * 60) % 60)
-              .toStringAsFixed(1)
-              .split('.')[0];
+      var nachkommaStelle = (((zeitInMinuten * 60) / paceInSekunden) % 100).toStringAsFixed(2).split('.')[1];
+      distanzInKm = ((zeitInMinuten * 60) / paceInSekunden).toString().split('.')[0] + "." + nachkommaStelle;
     }
     return distanzInKm;
   }

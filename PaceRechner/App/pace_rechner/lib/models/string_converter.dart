@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class StringConverter {
   double? ConvertStringToDistanzInKm(String _distanz) {
     double? distanzInKm = double.tryParse(_distanz);
-    return distanzInKm;
+    return distanzInKm == null ? distanzInKm : distanzInKm.roundToDouble();
   }
 
   double? ConvertStringToZeitInMinuten(String _zeit) {
