@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class CustomTimePicker extends StatefulWidget {
   final TextEditingController controller;
   final CupertinoTimerPickerMode mode;
+  final Function onChange;
   const CustomTimePicker(
-      {Key? key, required this.controller, required this.mode})
+      {Key? key, required this.controller, required this.mode, required this.onChange})
       : super(key: key);
 
   @override
@@ -41,6 +42,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                           : newTimer.toString().split(':')[1] +
                               ":" +
                               newTimer.toString().split(':')[2].split('.')[0];
+                              
+                widget.onChange();
                 });
               },
             ),
@@ -52,7 +55,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
         style: TextStyle(
             color: widget.mode == CupertinoTimerPickerMode.hm ? CupertinoColors.activeOrange : CupertinoColors.activeBlue,
             fontSize: 30,
-            fontWeight: FontWeight.bold),
+            fontFamily: "Orbitron"),
       ),
     );
   }
