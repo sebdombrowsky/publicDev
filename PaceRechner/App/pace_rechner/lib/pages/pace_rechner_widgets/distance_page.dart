@@ -59,28 +59,25 @@ class _DistancePageState extends State<DistancePage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Material(
-                    borderOnForeground: true,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      width: 120,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          border: Border.all(color: Colors.grey[500]!),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: CustomTimePicker(
-                        controller: widget.zeitController,
-                        mode: CupertinoTimerPickerMode.hm,
-                        onChange: () => DistanzBerechnen(
-                            widget.zeitController.text,
-                            widget.paceController.text),
-                      )),
-                    ),
+                Material(
+                  borderOnForeground: true,
+                  elevation: 2,
+                  borderRadius: BorderRadius.circular(6),
+                  child: Container(
+                    width: 120,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        border: Border.all(color: Colors.grey[500]!),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Center(
+                        child: CustomTimePicker(
+                      controller: widget.zeitController,
+                      mode: CupertinoTimerPickerMode.hm,
+                      onChange: () => DistanzBerechnen(
+                          widget.zeitController.text,
+                          widget.paceController.text),
+                    )),
                   ),
                 ),
               ],
@@ -112,7 +109,7 @@ class _DistancePageState extends State<DistancePage> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(top: 12),
                   child: Material(
                     borderOnForeground: true,
                     elevation: 2,
