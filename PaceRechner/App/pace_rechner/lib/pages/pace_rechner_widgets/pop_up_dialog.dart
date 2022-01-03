@@ -13,7 +13,9 @@ class PopUpDialog extends StatelessWidget {
         children: const <Widget>[
           Text("Version 1.0"),
           Text(""),
-          Text("Bei der Berechnung können Rundungsfehler entstehen. Angaben sind ohne Gewähr."),
+          Text("Mit dieser App lässt sich die Geschwindigkeit in Minuten pro Kilometern, die Distanz in Kilometern und die Zeit in Stunden berechnen."),
+          Text(""),
+          Text("Das Ergebnis wird auf der entsprechenden Seite beim Verändern der Werte im unteren Bereich angezeigt."),
           Text(""),
           Text("Viel Spaß beim Laufen!"),
         ],
