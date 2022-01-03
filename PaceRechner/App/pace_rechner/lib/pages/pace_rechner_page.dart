@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pace_rechner/models/rechner.dart';
 import 'package:pace_rechner/models/sprueche.dart';
 import 'package:pace_rechner/models/string_converter.dart';
+import 'package:pace_rechner/pages/pace_rechner_widgets/page_circles.dart';
 
 import 'pace_rechner_widgets/page_view.dart';
 import 'pace_rechner_widgets/pop_up_dialog.dart';
@@ -32,9 +33,11 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
         zeitController.text == "" ? "01:59" : zeitController.text;
     paceController.text =
         paceController.text == "" ? "05:40" : paceController.text;
+        
+    PageController pageController = PageController(viewportFraction: 0.95);
 
     return Scaffold(
-      backgroundColor: Colors.white, // CupertinoColors.darkBackgroundGray,
+      backgroundColor: Colors.grey[850], // CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
         title: Text(
           "Pace Me",
@@ -59,19 +62,8 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              PageViewWidget(),
-              
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  spruch,
-                  style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      fontFamily: "OoohBaby"),
-                ),
-              ),
+              PageViewWidget(pageController: pageController,),
+              PageCircles(controller: pageController),
             ],
           ),
         ),

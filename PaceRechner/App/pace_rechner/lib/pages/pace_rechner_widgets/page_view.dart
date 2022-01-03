@@ -10,8 +10,10 @@ class PageViewWidget extends StatefulWidget {
   TextEditingController distanzController = TextEditingController();
   TextEditingController zeitController = TextEditingController();
   TextEditingController paceController = TextEditingController();
+  PageController pageController;
   PageViewWidget({
     Key? key,
+    required this.pageController
   }) : super(key: key);
 
   @override
@@ -30,10 +32,11 @@ class _PageViewWidgetState extends State<PageViewWidget> {
     widget.paceController.text =
         widget.paceController.text == "" ? "05:40" : widget.paceController.text;
     final size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: size.height * 0.5,
+      height: size.height * 0.6,
       child: PageView(
-        controller: PageController(viewportFraction: 0.95),
+        controller: widget.pageController,
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),

@@ -33,7 +33,7 @@ class _TimePageState extends State<TimePage> {
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.2,
       decoration: BoxDecoration(
-          color: Colors.grey[700], borderRadius: BorderRadius.circular(15)),
+          color: Colors.grey[600], borderRadius: BorderRadius.circular(15)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -50,14 +50,14 @@ class _TimePageState extends State<TimePage> {
                       "Distance",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "km",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
                   ],
@@ -101,14 +101,14 @@ class _TimePageState extends State<TimePage> {
                       "Pace",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
-                      "mm:ss",
+                      "min/km",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
                   ],
@@ -139,34 +139,41 @@ class _TimePageState extends State<TimePage> {
                 ),
               ],
             ),
-          ),          
+          ),
           Padding(
-            padding: const EdgeInsets.only(top:12),
+            padding: const EdgeInsets.only(top: 12),
             child: Text(
               widget.title,
               style: TextStyle(
                   color: Colors.white, fontSize: 35, fontFamily: "Orbitron"),
             ),
           ),
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                widget.zeitController.text,
-                style: TextStyle(
-                  color: CupertinoColors.activeOrange,
-                  fontSize: 75,
-                  fontFamily: "Orbitron",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Container(
+              width: widget.size.width,
+              decoration: BoxDecoration(
+                  color: Colors.white,),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    widget.zeitController.text,
+                    style: TextStyle(
+                      color: CupertinoColors.activeOrange,
+                      fontSize: 75,
+                      fontFamily: "Orbitron",
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Text(
-            "hh/mm",
+            "hh:mm",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 22,
               fontFamily: "Orbitron",
             ),
           )
