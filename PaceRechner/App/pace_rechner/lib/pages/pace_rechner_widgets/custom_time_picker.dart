@@ -50,12 +50,15 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           ),
         );
       },
-      child: Text(
-        widget.controller.text == "" ? anzeige : widget.controller.text,
-        style: TextStyle(
-            color: widget.mode == CupertinoTimerPickerMode.hm ? CupertinoColors.activeOrange : CupertinoColors.activeBlue,
-            fontSize: 30,
-            fontFamily: "Orbitron"),
+      child: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Text(
+          widget.controller.text == "" ? anzeige : widget.controller.text,
+          style: TextStyle(
+              color: widget.mode == CupertinoTimerPickerMode.hm ? CupertinoColors.activeOrange : CupertinoColors.activeBlue,
+              fontSize: 30,
+              fontFamily: "Orbitron"),
+        ),
       ),
     );
   }

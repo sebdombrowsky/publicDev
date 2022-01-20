@@ -43,9 +43,11 @@ class Rechner {
       var nachKommaStelle = (((distanzInKm * paceInSekunden) / 60) % 60)
           .toStringAsFixed(1)
           .split('.')[0];
-      zeitInStunden = (((distanzInKm * paceInSekunden) / 60) / 60)
+      var stunden = (((distanzInKm * paceInSekunden) / 60) / 60)
               .toString()
-              .split('.')[0] +
+              .split('.')[0];
+      var stundenMitNull = stunden.length == 1 ? "0" + stunden : stunden;
+      zeitInStunden =  stundenMitNull +
           ":" +
           (nachKommaStelle.length == 1
               ? "0" + nachKommaStelle

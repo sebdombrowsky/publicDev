@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pace_rechner/pages/herzfrequenz_rechner_page.dart';
 import 'package:pace_rechner/pages/pace_rechner_page.dart';
 
 class RootWidget extends StatefulWidget {
@@ -18,6 +20,7 @@ class _RootWidgetState extends State<RootWidget> {
         index: _currentIndex,
         children: const [
           PaceRechnerPage(),
+          HerzfrequenzRechnerPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -27,17 +30,18 @@ class _RootWidgetState extends State<RootWidget> {
           });
         },
         currentIndex: _currentIndex,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.orange[800],
-        backgroundColor: Colors.black,
+        unselectedItemColor: CupertinoColors.inactiveGray,
+        selectedItemColor: CupertinoColors.white,
+        selectedFontSize: 18,
+        backgroundColor: CupertinoColors.systemIndigo,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.timer),
-            label: "Pace Rechner",
+            label: "Pace",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sports_score),
-            label: "Bestzeiten",
+            icon: Icon(Icons.favorite),
+            label: "Pulse",
           )
         ],
       ),

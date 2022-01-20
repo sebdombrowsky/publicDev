@@ -8,16 +8,7 @@ import 'custom_distance_picker.dart';
 class TimePage extends StatefulWidget {
   final Size size;
   final String title;
-  TextEditingController distanzController;
-  TextEditingController zeitController;
-  TextEditingController paceController;
-  TimePage(
-      {Key? key,
-      required this.size,
-      required this.title,
-      required this.distanzController,
-      required this.zeitController,
-      required this.paceController})
+  TimePage({Key? key, required this.size, required this.title})
       : super(key: key);
 
   @override
@@ -26,14 +17,23 @@ class TimePage extends StatefulWidget {
 
 class _TimePageState extends State<TimePage> {
   Rechner rechner = Rechner();
+  TextEditingController distanzController = TextEditingController();
+  TextEditingController zeitController = TextEditingController();
+  TextEditingController paceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    distanzController.text =
+        distanzController.text == "" ? "21.1" : distanzController.text;
+    zeitController.text =
+        zeitController.text == "" ? "01:59" : zeitController.text;
+    paceController.text =
+        paceController.text == "" ? "05:40" : paceController.text;
     return Container(
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.2,
       decoration: BoxDecoration(
-          color: Colors.grey[600], borderRadius: BorderRadius.circular(15)),
+          color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -49,14 +49,14 @@ class _TimePageState extends State<TimePage> {
                     Text(
                       "Distance",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "km",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -75,10 +75,9 @@ class _TimePageState extends State<TimePage> {
                         borderRadius: BorderRadius.circular(6)),
                     child: Center(
                         child: CustomDistancePicker(
-                      controller: widget.distanzController,
+                      controller: distanzController,
                       onChange: () => ZeitBerechnen(
-                          widget.distanzController.text,
-                          widget.paceController.text),
+                          distanzController.text, paceController.text),
                     )),
                   ),
                 ),
@@ -97,14 +96,14 @@ class _TimePageState extends State<TimePage> {
                     Text(
                       "Pace",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "min/km",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -125,11 +124,10 @@ class _TimePageState extends State<TimePage> {
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                           child: CustomTimePicker(
-                        controller: widget.paceController,
+                        controller: paceController,
                         mode: CupertinoTimerPickerMode.ms,
                         onChange: () => ZeitBerechnen(
-                            widget.distanzController.text,
-                            widget.paceController.text),
+                            distanzController.text, paceController.text),
                       )),
                     ),
                   ),
@@ -138,11 +136,14 @@ class _TimePageState extends State<TimePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: 22),
             child: Text(
               widget.title,
               style: TextStyle(
-                  color: Colors.white, fontSize: 35, fontFamily: "Orbitron"),
+                  color: Colors.black,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Orbitron"),
             ),
           ),
           Padding(
@@ -150,16 +151,20 @@ class _TimePageState extends State<TimePage> {
             child: Container(
               width: widget.size.width,
               decoration: BoxDecoration(
-                  color: Colors.white,),
+                color: Colors.white,
+              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(
-                    widget.zeitController.text,
-                    style: TextStyle(
-                      color: CupertinoColors.activeOrange,
-                      fontSize: 75,
-                      fontFamily: "Orbitron",
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      zeitController.text,
+                      style: TextStyle(
+                        color: CupertinoColors.activeOrange,
+                        fontSize: 75,
+                        fontFamily: "Orbitron",
+                      ),
                     ),
                   ),
                 ),
@@ -169,7 +174,7 @@ class _TimePageState extends State<TimePage> {
           Text(
             "hh:mm",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 22,
               fontFamily: "Orbitron",
             ),
@@ -181,7 +186,7 @@ class _TimePageState extends State<TimePage> {
 
   void ZeitBerechnen(String _distanz, String _pace) {
     setState(() {
-      widget.zeitController.text = rechner.ZeitBerechnen(_distanz, _pace);
+      zeitController.text = rechner.ZeitBerechnen(_distanz, _pace);
     });
   }
 }

@@ -5,7 +5,7 @@ import 'package:pace_rechner/models/sprueche.dart';
 import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/page_circles.dart';
 
-import 'pace_rechner_widgets/page_view.dart';
+import 'pace_rechner_widgets/pace_page_view.dart';
 import 'pace_rechner_widgets/pop_up_dialog.dart';
 
 class PaceRechnerPage extends StatefulWidget {
@@ -62,7 +62,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              PageViewWidget(pageController: pageController,),
+              PacePageViewWidget(pageController: pageController,),
               PageCircles(controller: pageController),
             ],
           ),
