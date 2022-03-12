@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/herzfrequenz_page_view.dart';
+import 'package:pace_rechner/pages/tipps_page_widgets/custom_list_widget.dart';
 import 'pace_rechner_widgets/pop_up_dialog.dart';
 
-class HerzfrequenzRechnerPage extends StatefulWidget {
-  const HerzfrequenzRechnerPage({ Key? key }) : super(key: key);
+class TippsPage extends StatefulWidget {
+  const TippsPage({Key? key}) : super(key: key);
 
   @override
-  _HerzfrequenzRechnerPageState createState() => _HerzfrequenzRechnerPageState();
+  _TippsPageState createState() => _TippsPageState();
 }
 
-class _HerzfrequenzRechnerPageState extends State<HerzfrequenzRechnerPage> {
+class _TippsPageState extends State<TippsPage> {
   @override
   Widget build(BuildContext context) {
-
-    PageController pageController = PageController(viewportFraction: 1);
-
     return Scaffold(
       backgroundColor: Colors.grey[850], // CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
@@ -40,7 +37,7 @@ class _HerzfrequenzRechnerPageState extends State<HerzfrequenzRechnerPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            HerzfrequenzPageView(pageController: pageController,),
+            ListWidget(),
           ],
         ),
       ),

@@ -15,7 +15,8 @@ class _HerzfrequenzPageViewState extends State<HerzfrequenzPageView> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.6,
+      height: size.height,
+      width: size.width,
       child: PageView(
         controller: widget.pageController,
         children: [

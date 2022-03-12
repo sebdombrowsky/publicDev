@@ -4,7 +4,6 @@ import 'package:pace_rechner/models/rechner.dart';
 import 'package:pace_rechner/models/sprueche.dart';
 import 'package:pace_rechner/models/string_converter.dart';
 import 'package:pace_rechner/pages/pace_rechner_widgets/page_circles.dart';
-
 import 'pace_rechner_widgets/pace_page_view.dart';
 import 'pace_rechner_widgets/pop_up_dialog.dart';
 
@@ -33,7 +32,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
         zeitController.text == "" ? "01:59" : zeitController.text;
     paceController.text =
         paceController.text == "" ? "05:40" : paceController.text;
-        
+
     PageController pageController = PageController(viewportFraction: 0.95);
 
     return Scaffold(
@@ -45,14 +44,14 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
         ),
         centerTitle: true,
         backgroundColor: CupertinoColors.systemIndigo,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.info),
           onPressed: () {
             showDialog(
                 context: context,
                 builder: (BuildContext context) => PopUpDialog());
           },
-        ),
+        ),*/
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -62,7 +61,9 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              PacePageViewWidget(pageController: pageController,),
+              PacePageViewWidget(
+                pageController: pageController,
+              ),
               PageCircles(controller: pageController),
             ],
           ),

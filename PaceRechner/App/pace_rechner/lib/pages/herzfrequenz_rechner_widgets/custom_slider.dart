@@ -18,7 +18,7 @@ class _CustomSliderState extends State<CustomSlider> {
       value: currentValue,
       max: 100,
       divisions: 100,
-      label: currentValue.round().toString() + "%",
+      //label: currentValue.round().toString() + "%",
       onChanged: (double value) {
         setState(() {
           currentValue = value;

@@ -29,24 +29,36 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
     prozentController.text =
         prozentController.text == "" ? "50" : prozentController.text;
     return Container(
-      width: widget.size.width * 0.5,
-      height: widget.size.height * 0.5,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+      width: widget.size.width,
+      height: widget.size.height,
+      decoration: BoxDecoration(color: Colors.white),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 18),
               child: Text(
-                "Deine maximale Herzfrequenz",
+                "Du planst ein Training und möchtest \"auf Puls\" laufen?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 16,
+                  fontFamily: "Orbitron",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Text(
+                "Gib als erstes deine maximale Herzfrequenz an. Infos zum Berechnen der max. Herzfrequenz findest du unter \"Tips\"",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
                   fontFamily: "Orbitron",
                   fontWeight: FontWeight.bold,
                 ),
@@ -65,14 +77,14 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
                         "Pulse",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontFamily: "Orbitron"),
                       ),
                       Text(
                         "bpm",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 14,
                             fontFamily: "Orbitron"),
                       ),
                     ],
@@ -104,56 +116,59 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 16,
                     fontFamily: "Orbitron",
                     fontWeight: FontWeight.bold),
               ),
             ),
-            CustomSlider(
-                prozent: prozentController,
-                onChange: () =>
-                    PulsBerechnen(pulsController.text, prozentController.text)),
-            Text(
-              "Für ein Training bei " +
-                  prozentController.text +
-                  "% deiner maximalen Herzfrequenz, liegt der optimale Pulsbereich bei",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: "Orbitron",
-                  fontWeight: FontWeight.bold),
-            ),
-            Container(
-              width: widget.size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      zielPulsController.text,
+                      prozentController.text + "%",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: CupertinoColors.destructiveRed,
-                        fontSize: 75,
-                        fontFamily: "Orbitron",
-                      ),
+                          color: CupertinoColors.destructiveRed,
+                          fontSize: 24,
+                          fontFamily: "Orbitron",
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                ),
+                  Text(
+                    "entspricht",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: "Orbitron",
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      zielPulsController.text + " bpm",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: CupertinoColors.destructiveRed,
+                          fontSize: 24,
+                          fontFamily: "Orbitron",
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Text(
-              "bpm",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22,
-                fontFamily: "Orbitron",
-              ),
-            )
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: CustomSlider(
+                  prozent: prozentController,
+                  onChange: () =>
+                      PulsBerechnen(pulsController.text, prozentController.text)),
+            ),
           ],
         ),
       ),
@@ -167,7 +182,6 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
 
     int zielPuls = (_maxPuls * (_prozent / 100)).round();
     setState(() {
-      print(zielPuls.toString() + zielPulsController.text);
       zielPulsController.text = zielPuls.toString();
     });
   }
