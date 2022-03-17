@@ -28,12 +28,15 @@ class _HerzfrequenzRechnerPageState extends State<HerzfrequenzRechnerPage> {
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            HerzfrequenzPageView(pageController: pageController,),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HerzfrequenzPageView(pageController: pageController,),
+            ],
+          ),
         ),
       ),
     );

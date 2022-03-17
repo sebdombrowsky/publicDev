@@ -33,8 +33,6 @@ class _PacePageState extends State<PacePage> {
     paceController.text =
         paceController.text == "" ? "05:40" : paceController.text;
     return Container(
-      width: widget.size.width * 0.5,
-      height: widget.size.height * 0.5,
       decoration: BoxDecoration(
           color: CupertinoColors.darkBackgroundGray, ),
       child: Column(

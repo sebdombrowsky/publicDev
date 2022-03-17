@@ -35,6 +35,7 @@ class _CustomMaxPulsePickerState extends State<CustomMaxPulsePicker> {
                 onSelectedItemChanged: (newPulse) {
                   setState(() {
                     widget.controller.text = (newPulse+120).toString();
+                    widget.onChange();
                   });
                 },
               ),
