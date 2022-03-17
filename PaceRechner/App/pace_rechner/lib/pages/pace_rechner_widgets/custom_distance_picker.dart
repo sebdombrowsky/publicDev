@@ -142,7 +142,7 @@ class _CustomDistancePickerState extends State<CustomDistancePicker> {
           );
         },
         child: FittedBox(
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
           child: Text(
             widget.controller.text == "" ? anzeige : widget.controller.text,
             style: const TextStyle(

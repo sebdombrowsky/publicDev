@@ -14,29 +14,21 @@ class _TippsPageState extends State<TippsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850], // CupertinoColors.darkBackgroundGray,
+      backgroundColor: Colors.grey[200], // CupertinoColors.darkBackgroundGray,
       appBar: AppBar(
         title: Text(
           "Pace Me",
           style: TextStyle(fontFamily: "Orbitron", fontSize: 35),
         ),
         centerTitle: true,
-        backgroundColor: CupertinoColors.systemIndigo,
-        /*leading: IconButton(
-          icon: Icon(Icons.info),
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => PopUpDialog());
-          },
-        ),*/
+        backgroundColor: CupertinoColors.darkBackgroundGray,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             ListWidget(),
           ],
         ),

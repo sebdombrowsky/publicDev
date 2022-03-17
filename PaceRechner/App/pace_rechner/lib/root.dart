@@ -25,29 +25,29 @@ class _RootWidgetState extends State<RootWidget> {
           TippsPage(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CupertinoTabBar(
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
         currentIndex: _currentIndex,
-        unselectedItemColor: CupertinoColors.inactiveGray,
-        selectedItemColor: CupertinoColors.white,
-        selectedFontSize: 18,
-        backgroundColor: CupertinoColors.systemIndigo,
+        inactiveColor: CupertinoColors.inactiveGray,
+        activeColor: CupertinoColors.activeOrange,
+        iconSize: 35,
+        backgroundColor: CupertinoColors.darkBackgroundGray,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: "Pulse",
           ),  
           BottomNavigationBarItem(
             icon: Icon(Icons.timer),
-            label: "Pace",
           ),        
           BottomNavigationBarItem(
             icon: Icon(Icons.lightbulb),
-            label: "Tips",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.navigation),
           )
         ],
       ),

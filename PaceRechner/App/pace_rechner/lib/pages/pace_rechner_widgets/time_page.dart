@@ -33,7 +33,7 @@ class _TimePageState extends State<TimePage> {
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.2,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          color: CupertinoColors.darkBackgroundGray,),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -47,16 +47,16 @@ class _TimePageState extends State<TimePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      "Distance",
+                      "Distanz",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "km",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -96,14 +96,14 @@ class _TimePageState extends State<TimePage> {
                     Text(
                       "Pace",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "min/km",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -140,7 +140,7 @@ class _TimePageState extends State<TimePage> {
             child: Text(
               widget.title,
               style: TextStyle(
-                  color: Colors.black,
+                  color: CupertinoColors.white,
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Orbitron"),
@@ -150,9 +150,6 @@ class _TimePageState extends State<TimePage> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Container(
               width: widget.size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -161,7 +158,7 @@ class _TimePageState extends State<TimePage> {
                     child: Text(
                       zeitController.text,
                       style: TextStyle(
-                        color: CupertinoColors.activeOrange,
+                        color: CupertinoColors.systemRed,
                         fontSize: 75,
                         fontFamily: "Orbitron",
                       ),
@@ -174,7 +171,7 @@ class _TimePageState extends State<TimePage> {
           Text(
             "hh:mm",
             style: TextStyle(
-              color: Colors.black,
+              color: CupertinoColors.white,
               fontSize: 22,
               fontFamily: "Orbitron",
             ),
