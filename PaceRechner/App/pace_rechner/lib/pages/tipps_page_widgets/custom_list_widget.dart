@@ -15,19 +15,17 @@ class Item {
 }
 
 List<Item> generateItems() {
-  List<Item> data = <Item>[];  
+  List<Item> data = <Item>[];
+
+  data.add(Item(headerValue: "Abkürzungen", expandedValue: "toDo"));
   data.add(Item(
       headerValue: "beats per minute (bpm)",
       expandedValue:
           "In dieser Einheit wird deine Herzfrequenz, also dein Puls angegeben."));
-  data.add(Item(
-      headerValue: "Grundlagenausdauer",
-      expandedValue:
-          "toDo"));
-  data.add(Item(
-      headerValue: "Intervalltraining",
-      expandedValue:
-          "toDo"));
+  data.add(Item(headerValue: "Grundlagenausdauer GA1", expandedValue: "toDo"));
+  data.add(Item(headerValue: "Grundlagenausdauer GA2", expandedValue: "toDo"));
+  data.add(Item(headerValue: "Intervalltraining", expandedValue: "toDo"));
+  data.add(Item(headerValue: "Lauftechnik", expandedValue: "toDo"));
   data.add(Item(
       headerValue: "maximale Herzfrequenz",
       expandedValue:
@@ -36,10 +34,10 @@ List<Item> generateItems() {
       headerValue: "Pace",
       expandedValue:
           "Die Pace (Geschwindigkeit) wird in Minuten pro Kilometern angegeben und wird von Läuferinnen und Läufern oft als Richtwert verwendet:\n\n\"Heute laufe ich eine 5er Pace.\" bedeutet: \"Für einen Kilometer benötige ich 5 Minuten.\""));
-  data.add(Item(
-      headerValue: "VO2max",
-      expandedValue:
-          "toDo"));
+  data.add(Item(headerValue: "Pulsmesser", expandedValue: "toDo"));
+  data.add(Item(headerValue: "Trainingsplan", expandedValue: "toDo"));
+  data.add(Item(headerValue: "VO2max", expandedValue: "toDo"));
+  data.add(Item(headerValue: "Wettkampf WSA", expandedValue: "toDo"));
 
   return data;
 }
@@ -92,9 +90,7 @@ class _ListWidgetState extends State<ListWidget> {
               padding: const EdgeInsets.only(bottom: 12),
               child: Text(
                 item.expandedValue,
-                style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: "Orbitron"),
+                style: TextStyle(fontSize: 15, fontFamily: "Orbitron"),
               ),
             ),
           ),

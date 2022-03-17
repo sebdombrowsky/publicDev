@@ -33,7 +33,7 @@ class _PaceRechnerPageState extends State<PaceRechnerPage> {
     paceController.text =
         paceController.text == "" ? "05:40" : paceController.text;
 
-    PageController pageController = PageController(viewportFraction: 0.95);
+    PageController pageController = PageController(viewportFraction: 1);
 
     return Scaffold(
       backgroundColor: Colors.grey[200], // CupertinoColors.darkBackgroundGray,

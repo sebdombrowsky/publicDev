@@ -17,9 +17,12 @@ class _HerzfrequenzPageViewState extends State<HerzfrequenzPageView> {
     return SizedBox(
       height: size.height * 0.6,
       width: size.width,
-      child: HerzfrequenzPage(
-        size: size,
-        title: "Herzfrequenz",
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6),
+        child: HerzfrequenzPage(
+          size: size,
+          title: "Herzfrequenz",
+        ),
       ),
     );
   }
