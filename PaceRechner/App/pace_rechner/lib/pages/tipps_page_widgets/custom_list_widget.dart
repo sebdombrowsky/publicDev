@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // stores ExpansionPanel state information
@@ -16,9 +17,17 @@ class Item {
 List<Item> generateItems() {
   List<Item> data = <Item>[];  
   data.add(Item(
-      headerValue: "bpm",
+      headerValue: "beats per minute (bpm)",
       expandedValue:
-          "bpm steht für \"beats per minute\". In dieser Einheit wird deine Herzfrequenz, also dein Puls angegeben."));
+          "In dieser Einheit wird deine Herzfrequenz, also dein Puls angegeben."));
+  data.add(Item(
+      headerValue: "Grundlagenausdauer",
+      expandedValue:
+          "toDo"));
+  data.add(Item(
+      headerValue: "Intervalltraining",
+      expandedValue:
+          "toDo"));
   data.add(Item(
       headerValue: "maximale Herzfrequenz",
       expandedValue:
@@ -27,6 +36,10 @@ List<Item> generateItems() {
       headerValue: "Pace",
       expandedValue:
           "Die Pace (Geschwindigkeit) wird in Minuten pro Kilometern angegeben und wird von Läuferinnen und Läufern oft als Richtwert verwendet:\n\n\"Heute laufe ich eine 5er Pace.\" bedeutet: \"Für einen Kilometer benötige ich 5 Minuten.\""));
+  data.add(Item(
+      headerValue: "VO2max",
+      expandedValue:
+          "toDo"));
 
   return data;
 }
@@ -59,11 +72,15 @@ class _ListWidgetState extends State<ListWidget> {
       },
       children: _data.map<ExpansionPanel>((Item item) {
         return ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: CupertinoColors.activeOrange,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
+              tileColor: CupertinoColors.darkBackgroundGray,
               title: Text(
                 item.headerValue,
                 style: TextStyle(
+                    color: CupertinoColors.white,
                     fontSize: 18,
                     fontFamily: "Orbitron",
                     fontWeight: FontWeight.bold),

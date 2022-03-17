@@ -31,7 +31,7 @@ class _DistancePageState extends State<DistancePage> {
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.2,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          color: CupertinoColors.darkBackgroundGray,),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -45,16 +45,16 @@ class _DistancePageState extends State<DistancePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      "Time",
+                      "Zeit",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "hh:mm",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -95,14 +95,14 @@ class _DistancePageState extends State<DistancePage> {
                     Text(
                       "Pace",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "min/km",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -139,7 +139,7 @@ class _DistancePageState extends State<DistancePage> {
             child: Text(
               widget.title,
               style: TextStyle(
-                  color: Colors.black,
+                  color: CupertinoColors.white,
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Orbitron"),
@@ -149,9 +149,6 @@ class _DistancePageState extends State<DistancePage> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Container(
               width: widget.size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -173,7 +170,7 @@ class _DistancePageState extends State<DistancePage> {
           Text(
             "km",
             style: TextStyle(
-              color: Colors.black,
+              color: CupertinoColors.white,
               fontSize: 22,
               fontFamily: "Orbitron",
             ),

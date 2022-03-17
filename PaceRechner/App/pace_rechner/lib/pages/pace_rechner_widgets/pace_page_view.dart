@@ -26,20 +26,12 @@ class _PacePageViewWidgetState extends State<PacePageViewWidget> {
     return SizedBox(
       height: size.height * 0.6,
       child: PageView(
+        padEnds: false,
         controller: widget.pageController,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: PacePage(size: size, title: "Pace",),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: DistancePage(size: size, title: "Distance",),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: TimePage(size: size, title: "Time",),
-          ),
+          PacePage(size: size, title: "Pace",),
+          DistancePage(size: size, title: "Distanz",),
+          TimePage(size: size, title: "Zeit",),
         ],
       ),
     );

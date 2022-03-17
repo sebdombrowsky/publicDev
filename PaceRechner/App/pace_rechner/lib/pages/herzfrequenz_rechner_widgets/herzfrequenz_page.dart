@@ -31,7 +31,6 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
     return Container(
       width: widget.size.width,
       height: widget.size.height,
-      decoration: BoxDecoration(color: Colors.white),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
@@ -74,7 +73,7 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        "Pulse",
+                        "Puls",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,

@@ -36,7 +36,7 @@ class _PacePageState extends State<PacePage> {
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.5,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          color: CupertinoColors.darkBackgroundGray, ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -50,16 +50,16 @@ class _PacePageState extends State<PacePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      "Distance",
+                      "Distanz",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "km",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -97,16 +97,16 @@ class _PacePageState extends State<PacePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      "Time",
+                      "Zeit",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 22,
                           fontFamily: "Orbitron"),
                     ),
                     Text(
                       "hh:mm",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: CupertinoColors.white,
                           fontSize: 15,
                           fontFamily: "Orbitron"),
                     ),
@@ -143,7 +143,7 @@ class _PacePageState extends State<PacePage> {
             child: Text(
               widget.title,
               style: TextStyle(
-                  color: Colors.black,
+                  color: CupertinoColors.white,
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Orbitron"),
@@ -153,9 +153,6 @@ class _PacePageState extends State<PacePage> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Container(
               width: widget.size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -177,7 +174,7 @@ class _PacePageState extends State<PacePage> {
           Text(
             "min/km",
             style: TextStyle(
-              color: Colors.black,
+              color: CupertinoColors.white,
               fontSize: 22,
               fontFamily: "Orbitron",
             ),

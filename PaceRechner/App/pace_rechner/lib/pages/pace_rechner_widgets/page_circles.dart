@@ -27,37 +27,38 @@ class _PageCirclesState extends State<PageCircles> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                width: 10,
-                height: 10,
+                width: 15,
+                height: 15,
                 decoration: BoxDecoration(
                     color: page >= 0 && page < 0.5
-                        ? CupertinoColors.systemIndigo
-                        : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                        ? CupertinoColors.activeOrange
+                        : CupertinoColors.darkBackgroundGray,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                    
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                width: 10,
-                height: 10,
+                width: 15,
+                height: 15,
                 decoration: BoxDecoration(
                     color: page >= 0.5 && page < 1.5
-                        ? CupertinoColors.systemIndigo
-                        : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                        ? CupertinoColors.activeOrange
+                        : CupertinoColors.darkBackgroundGray,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                width: 10,
-                height: 10,
+                width: 15,
+                height: 15,
                 decoration: BoxDecoration(
                     color: page >= 1.5 && page <= 2
-                        ? CupertinoColors.systemIndigo
-                        : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                        ? CupertinoColors.activeOrange
+                        : CupertinoColors.darkBackgroundGray,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
               ),
             ),
           ],
