@@ -17,15 +17,19 @@ class Item {
 List<Item> generateItems() {
   List<Item> data = <Item>[];
 
-  data.add(Item(headerValue: "Abkürzungen", expandedValue: "toDo"));
   data.add(Item(
-      headerValue: "beats per minute (bpm)",
+      headerValue: "Abkürzungen",
       expandedValue:
-          "In dieser Einheit wird deine Herzfrequenz, also dein Puls angegeben."));
-  data.add(Item(headerValue: "Grundlagenausdauer GA1", expandedValue: "toDo"));
-  data.add(Item(headerValue: "Grundlagenausdauer GA2", expandedValue: "toDo"));
-  data.add(Item(headerValue: "Intervalltraining", expandedValue: "toDo"));
-  data.add(Item(headerValue: "Lauftechnik", expandedValue: "toDo"));
+          "bpm:\tbeats per minute\npb:\tpersönliche Bestleistung\nHFmax:\tmaximale Herzfrequenz"));
+
+  data.add(Item(
+      headerValue: "Grundlagenausdauer GA1",
+      expandedValue:
+          "Ein Training im GA1 Bereich dient als Basistraining für dein Leistungspensum.\nZielherzfrequenz: 60-75% deiner HFmax"));
+  data.add(Item(
+      headerValue: "Grundlagenausdauer GA2",
+      expandedValue:
+          "Ein Training im GA2 Bereich dient zur Leistungssteigerung und Verbesserung der Herzleistung.\nZielherzfrequenz: 75-85% deiner HFmax"));
   data.add(Item(
       headerValue: "maximale Herzfrequenz",
       expandedValue:
@@ -34,10 +38,22 @@ List<Item> generateItems() {
       headerValue: "Pace",
       expandedValue:
           "Die Pace (Geschwindigkeit) wird in Minuten pro Kilometern angegeben und wird von Läuferinnen und Läufern oft als Richtwert verwendet:\n\n\"Heute laufe ich eine 5er Pace.\" bedeutet: \"Für einen Kilometer benötige ich 5 Minuten.\""));
-  data.add(Item(headerValue: "Pulsmesser", expandedValue: "toDo"));
-  data.add(Item(headerValue: "Trainingsplan", expandedValue: "toDo"));
-  data.add(Item(headerValue: "VO2max", expandedValue: "toDo"));
-  data.add(Item(headerValue: "Wettkampf WSA", expandedValue: "toDo"));
+  data.add(Item(
+      headerValue: "Pulsmesser",
+      expandedValue:
+          "Um den eigenen Puls im Blick zu haben und den passenden Trainingsbereich zu definieren, empfiehlt es sich, eine Pulsuhr oder einen Brustgurt mit entsprechendem Sender zu tragen."));
+  data.add(Item(
+      headerValue: "Trainingsplan",
+      expandedValue:
+          "Für ein ausgewogenes Training solltest du sowohl deine Grundlagenausdauer trainieren, als auch leistungssteigernde Trainings, wie Intervalltrainings, in deinen Plan einbauen. Wenn du einen Wettkampf im Leistungssportbereich planst, dann lass dich individuell beraten und dir einen optimalen Trainingsplan zusammenstellen."));
+  data.add(Item(
+      headerValue: "VO2max",
+      expandedValue:
+          "Dieser Wert beschreibt die Rate, mit der Sauerstoff während eines Trainings verbraucht werden kann. Je höher der Wert, desto besser deine Cardofitness und Ausdauer."));
+  data.add(Item(
+      headerValue: "Wettkampf WSA",
+      expandedValue:
+          "Wettkampfspezifisches Ausdauertraining. In diesem Trainingsbereich läufst du dein Höchsttempo auf sehr kurze Strecken, um neue Höchstgeschwindigkeiten für deine Wettkämpfe zu erreichen.\n Zielherzfrequenz: über 85% der HFmax "));
 
   return data;
 }
