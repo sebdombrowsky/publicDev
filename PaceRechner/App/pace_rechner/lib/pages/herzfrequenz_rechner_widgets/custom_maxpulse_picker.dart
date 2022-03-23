@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class CustomMaxPulsePicker extends StatefulWidget {
   final TextEditingController controller;
   final Function onChange;
+  final int initial;
   const CustomMaxPulsePicker(
-      {Key? key, required this.controller, required this.onChange})
+      {Key? key, required this.controller, required this.onChange, required this.initial})
       : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class _CustomMaxPulsePickerState extends State<CustomMaxPulsePicker> {
                 backgroundColor:
                     CupertinoColors.systemBackground.resolveFrom(context),
                 itemExtent: 40,
-                scrollController: FixedExtentScrollController(initialItem: 70),
+                scrollController: FixedExtentScrollController(initialItem: widget.initial),
                 children: [
                   for(int i = 0; i < 111; i++) Center(child: Text((i+120).toString())),
                 ],

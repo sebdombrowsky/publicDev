@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/custom_maxpulse_picker.dart';
 import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/custom_slider.dart';
 
+import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class HerzfrequenzPage extends StatefulWidget {
   final Size size;
   final String title;
@@ -16,18 +19,35 @@ class HerzfrequenzPage extends StatefulWidget {
 }
 
 class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
+  String hfMax = "190";
+
+  void loadHfMaxValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      hfMax = (prefs.getString('hfMax'))!;
+      pulsController.text = hfMax;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadHfMaxValue();
+  }
+
   TextEditingController pulsController = TextEditingController();
   TextEditingController prozentController = TextEditingController();
   TextEditingController zielPulsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    // pulsController.text = hfMax;
     pulsController.text =
         pulsController.text == "" ? "190" : pulsController.text;
-    zielPulsController.text =
-        zielPulsController.text == "" ? "95" : zielPulsController.text;
     prozentController.text =
         prozentController.text == "" ? "50" : prozentController.text;
+    PulsBerechnen(pulsController.text, prozentController.text);
+
     return Container(
       color: CupertinoColors.darkBackgroundGray,
       child: Column(
@@ -84,7 +104,13 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
                         borderRadius: BorderRadius.circular(6)),
                     child: Center(
                       child: CustomMaxPulsePicker(
-                          controller: pulsController, onChange: () => PulsBerechnen(pulsController.text, prozentController.text)),
+                          controller: pulsController,
+                          onChange: () => {
+                                PulsBerechnen(pulsController.text,
+                                    prozentController.text),
+                                SetHfMax(),
+                              },
+                          initial: (int.parse(hfMax) - 120)),
                     ),
                   ),
                 ),
@@ -172,6 +198,14 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
     int zielPuls = (_maxPuls * (_prozent / 100)).round();
     setState(() {
       zielPulsController.text = zielPuls.toString();
+    });
+  }
+
+  Future<void> SetHfMax() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      hfMax = ((prefs.getString('hfMax')))!;
+      prefs.setString('hfMax', pulsController.text);
     });
   }
 }

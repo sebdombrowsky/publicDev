@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/herzfrequenz_page_view.dart';
-import 'pace_rechner_widgets/pop_up_dialog.dart';
+
 
 class HerzfrequenzRechnerPage extends StatefulWidget {
-  const HerzfrequenzRechnerPage({ Key? key }) : super(key: key);
+  const HerzfrequenzRechnerPage({Key? key}) : super(key: key);
 
   @override
-  _HerzfrequenzRechnerPageState createState() => _HerzfrequenzRechnerPageState();
+  _HerzfrequenzRechnerPageState createState() =>
+      _HerzfrequenzRechnerPageState();
 }
 
 class _HerzfrequenzRechnerPageState extends State<HerzfrequenzRechnerPage> {
+
+
   @override
   Widget build(BuildContext context) {
-
     PageController pageController = PageController(viewportFraction: 1);
 
     return Scaffold(
@@ -34,7 +36,9 @@ class _HerzfrequenzRechnerPageState extends State<HerzfrequenzRechnerPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              HerzfrequenzPageView(pageController: pageController,),
+              HerzfrequenzPageView(
+                pageController: pageController,
+              ),
             ],
           ),
         ),
