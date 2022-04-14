@@ -34,7 +34,8 @@ class _PacePageState extends State<PacePage> {
         paceController.text == "" ? "05:40" : paceController.text;
     return Container(
       decoration: BoxDecoration(
-          color: CupertinoColors.darkBackgroundGray, ),
+          color: CupertinoColors.darkBackgroundGray,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

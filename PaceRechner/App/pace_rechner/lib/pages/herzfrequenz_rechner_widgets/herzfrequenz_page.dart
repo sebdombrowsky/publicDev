@@ -6,7 +6,7 @@ import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/custom_maxpulse_
 import 'package:pace_rechner/pages/herzfrequenz_rechner_widgets/custom_slider.dart';
 
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
+/*import 'package:shared_preferences/shared_preferences.dart';*/
 
 class HerzfrequenzPage extends StatefulWidget {
   final Size size;
@@ -21,18 +21,18 @@ class HerzfrequenzPage extends StatefulWidget {
 class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
   String hfMax = "190";
 
-  void loadHfMaxValue() async {
+  /*void loadHfMaxValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       hfMax = (prefs.getString('hfMax'))!;
       pulsController.text = hfMax;
     });
-  }
+  }*/
 
   @override
   void initState() {
     super.initState();
-    loadHfMaxValue();
+    /*loadHfMaxValue();*/
   }
 
   TextEditingController pulsController = TextEditingController();
@@ -49,7 +49,9 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
     PulsBerechnen(pulsController.text, prozentController.text);
 
     return Container(
-      color: CupertinoColors.darkBackgroundGray,
+      decoration: BoxDecoration(
+          color: CupertinoColors.darkBackgroundGray,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -108,7 +110,7 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
                           onChange: () => {
                                 PulsBerechnen(pulsController.text,
                                     prozentController.text),
-                                SetHfMax(),
+                                /*SetHfMax(),*/
                               },
                           initial: (int.parse(hfMax) - 120)),
                     ),
@@ -201,11 +203,11 @@ class _HerzfrequenzPageState extends State<HerzfrequenzPage> {
     });
   }
 
-  Future<void> SetHfMax() async {
+  /*Future<void> SetHfMax() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       hfMax = ((prefs.getString('hfMax')))!;
       prefs.setString('hfMax', pulsController.text);
     });
-  }
+  }*/
 }

@@ -31,7 +31,8 @@ class _DistancePageState extends State<DistancePage> {
       width: widget.size.width * 0.5,
       height: widget.size.height * 0.2,
       decoration: BoxDecoration(
-          color: CupertinoColors.darkBackgroundGray,),
+          color: CupertinoColors.darkBackgroundGray,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/pages/herzfrequenz_rechner_page.dart';
+import 'package:pace_rechner/pages/navigator_page.dart';
 import 'package:pace_rechner/pages/pace_rechner_page.dart';
 import 'package:pace_rechner/pages/tipps_page.dart';
 
@@ -23,6 +24,7 @@ class _RootWidgetState extends State<RootWidget> {
           HerzfrequenzRechnerPage(),
           PaceRechnerPage(),
           TippsPage(),
+          NavigatorPage(),
         ],
       ),
       bottomNavigationBar: CupertinoTabBar(
@@ -39,10 +41,10 @@ class _RootWidgetState extends State<RootWidget> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-          ),  
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.timer),
-          ),        
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.lightbulb),
           ),
