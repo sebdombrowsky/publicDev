@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pace_rechner/models/rechner.dart';
-import 'custom_time_picker.dart';
+import 'package:pace_rechner/pages/sliderWidgets/pace_slider.dart';
+import '../sliderWidgets/zeit_slider.dart';
 
 class DistancePage extends StatefulWidget {
   final Size size;
@@ -27,156 +28,83 @@ class _DistancePageState extends State<DistancePage> {
         zeitController.text == "" ? "01:59" : zeitController.text;
     paceController.text =
         paceController.text == "" ? "05:40" : paceController.text;
-    return Container(
-      width: widget.size.width * 0.5,
-      height: widget.size.height * 0.2,
-      decoration: BoxDecoration(
-          color: CupertinoColors.darkBackgroundGray,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Zeit",
-                      style: TextStyle(
-                          color: CupertinoColors.white,
-                          fontSize: 22,
-                          fontFamily: "Orbitron"),
-                    ),
-                    Text(
-                      "hh:mm",
-                      style: TextStyle(
-                          color: CupertinoColors.white,
-                          fontSize: 15,
-                          fontFamily: "Orbitron"),
-                    ),
-                  ],
-                ),
-                Material(
-                  borderOnForeground: true,
-                  elevation: 2,
-                  borderRadius: BorderRadius.circular(6),
-                  child: Container(
-                    width: 120,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        border: Border.all(color: Colors.grey[500]!),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Center(
-                        child: CustomTimePicker(
-                      controller: zeitController,
-                      mode: CupertinoTimerPickerMode.hm,
-                      onChange: () => DistanzBerechnen(
-                          zeitController.text, paceController.text),
-                    )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Pace",
-                      style: TextStyle(
-                          color: CupertinoColors.white,
-                          fontSize: 22,
-                          fontFamily: "Orbitron"),
-                    ),
-                    Text(
-                      "min/km",
-                      style: TextStyle(
-                          color: CupertinoColors.white,
-                          fontSize: 15,
-                          fontFamily: "Orbitron"),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Material(
-                    borderOnForeground: true,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      width: 120,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          border: Border.all(color: Colors.grey[500]!),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Center(
-                          child: CustomTimePicker(
-                        controller: paceController,
-                        mode: CupertinoTimerPickerMode.ms,
-                        onChange: () => DistanzBerechnen(
-                            zeitController.text, paceController.text),
-                      )),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22),
-            child: Text(
-              widget.title,
-              style: TextStyle(
-                  color: CupertinoColors.white,
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Orbitron"),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Container(
+    return Scaffold(      
+      backgroundColor: Colors.grey[200], // CupertinoColors.darkBackgroundGray,
+      appBar: AppBar(
+        title: Text(
+          "Pace Me",
+          style: TextStyle(fontFamily: "Orbitron", fontSize: 35),
+        ),
+        centerTitle: true,
+        backgroundColor: CupertinoColors.darkBackgroundGray,
+      ),
+      body: Container(
+        decoration: BoxDecoration(color:  CupertinoColors.darkBackgroundGray),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
               width: widget.size.width,
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      distanzController.text,
-                      style: TextStyle(
-                        color: CupertinoColors.activeGreen,
-                        fontSize: 75,
-                        fontFamily: "Orbitron",
-                      ),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    distanzController.text,
+                    style: TextStyle(
+                      color: Colors.lightGreen,
+                      fontSize: 75,
+                      fontFamily: "Orbitron",
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          Text(
-            "km",
-            style: TextStyle(
-              color: CupertinoColors.white,
-              fontSize: 22,
-              fontFamily: "Orbitron",
+            Text(
+              "km",
+              style: TextStyle(
+                color: CupertinoColors.white,
+                fontSize: 22,
+                fontFamily: "Orbitron",
+              ),
             ),
-          )
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "Zeit hh:mm",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                  ),
+                ),
+                ZeitSlider(
+                  controller: zeitController,
+                  onChange: () => DistanzBerechnen(
+                      zeitController.text, paceController.text),
+                  size: widget.size,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                PaceSlider(
+                  controller: paceController,
+                  onChange: () =>
+                      DistanzBerechnen(zeitController.text, paceController.text),
+                  size: widget.size,
+                ),
+                Text(
+                  "Pace min/km",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -12,6 +12,10 @@ void main() {
     var km2 = converter.ConvertStringToDistanzInKm("21,1 km");
 
     expect(km2, 21.1);
+
+    var km3 = converter.ConvertStringToDistanzInKm("0,5 km");
+    
+    expect(km3, 0.5);
   });
   test('Convert Zeit String to Double', () {
     final converter = StringConverter();
